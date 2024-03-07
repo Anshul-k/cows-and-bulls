@@ -20,7 +20,6 @@ const Login = () => {
     // Redirect to the originally requested URL or the home page
     const redirectTo = redirectPath || "/home";
     navigate(redirectTo);
-    console.log(redirectTo);
     setRedirectPath(null); // Clear the stored redirect path after navigation
   };
 
