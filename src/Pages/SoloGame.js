@@ -43,7 +43,7 @@ function SoloGame() {
   const [hintUsed, setHintUsed] = useState(false);
   const [hintMessage, setHintMessage] = useState("");
   const [isDraftExpanded, setIsDraftExpanded] = useState(true);
-  const { userLoggedIn, currentUser } = useAuth();
+  const { currentUser } = useAuth();
   const [quits, setQuits] = useState(false);
   const [isWinning, setIsWinning] = useState(false);
 
@@ -85,7 +85,7 @@ function SoloGame() {
       numberOfInputFields,
       generateSecretCode
     );
-  }, []);
+  }, [gameId, numberOfInputFields]);
 
   ///////////////////////////////////////////////// Fucntions ///////////////////////////////////////////////
 
@@ -197,8 +197,6 @@ function SoloGame() {
     } catch (error) {
       console.error("Error saving game data:", error);
     }
-
-    console.log(secretCode);
   };
 
   const handleWinDialogClose = () => {

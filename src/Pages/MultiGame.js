@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import "../style.scss";
@@ -65,9 +65,7 @@ function MultiGame() {
   const [secretValue, setSecretValue] = useState(
     Array(numberOfInputFields).fill("")
   );
-  const [secretNumberErrors, setSecretNumberErrors] = useState(
-    Array(numberOfInputFields).fill(false)
-  );
+  const [secretNumberErrors] = useState(Array(numberOfInputFields).fill(false));
   const [isSecretCodeReady, setIsSecretCodeReady] = useState(false);
   const [isSecretCodeSubmitted, setIsSecretCodeSubmitted] = useState(false);
   const { currentUser } = useAuth();
@@ -102,10 +100,10 @@ function MultiGame() {
   };
 
   // Function to check secretcode readiness
-  const checkSecretCodeReadiness = () => {
+  const checkSecretCodeReadiness = useCallback(() => {
     const isReady = !secretValue.some((digit) => digit === "");
     setIsSecretCodeReady(isReady);
-  };
+  }, [secretValue]);
 
   const setAvatarUrlBasedOnDisplayName = (playerData, currentUser) => {
     if (
@@ -153,7 +151,7 @@ function MultiGame() {
         navigate("/home");
       }, 5000);
     }
-  }, [player1Data.quit, player2Data.quit]);
+  }, [player1Data.quit, player2Data.quit, gameId, navigate]);
 
   useEffect(() => {
     // Check if the latest guess has bulls equal to digits
@@ -184,7 +182,15 @@ function MultiGame() {
         }, 2000); // 1 second delay as an example, adjust as needed
       }
     }
-  }, [guesses, numberOfInputFields]);
+  }, [
+    guesses,
+    numberOfInputFields,
+    currentPlayer.displayName,
+    currentPlayer.isCompleted,
+    currentPlayer.isPlaying,
+    gameId,
+    player1Data.displayName,
+  ]);
 
   useEffect(() => {
     if (
@@ -341,7 +347,7 @@ function MultiGame() {
 
   useEffect(() => {
     checkSecretCodeReadiness();
-  }, [secretValue]);
+  }, [secretValue, checkSecretCodeReadiness]);
 
   // Call getNavbarHeight when the component mounts and when the window is resized
   useEffect(() => {
@@ -368,7 +374,7 @@ function MultiGame() {
     if (player1Data.isActive && player2Data.isActive) {
       fetchData();
     }
-  }, [gameId, currentUser]);
+  }, [gameId, currentUser, player1Data.isActive, player2Data.isActive]);
 
   useEffect(() => {
     const handleReadyStatusChange = async () => {
@@ -382,7 +388,13 @@ function MultiGame() {
     if (!player1Data.isPlaying && !player2Data.isPlaying) {
       handleReadyStatusChange();
     }
-  }, [gameId, player1Data.isReady, player2Data.isReady]);
+  }, [
+    gameId,
+    player1Data.isReady,
+    player2Data.isReady,
+    player2Data.isPlaying,
+    player1Data.isPlaying,
+  ]);
 
   ///////////////////////////////////////////////// FOR SECRET VALUE SUBMIT ////////////////////////////////////////////////////////
 
@@ -531,15 +543,6 @@ function MultiGame() {
 
     // Move focus to the first input box
     inputValueRefs[0].current.focus();
-
-    if (
-      player1Data.displayName === currentUser?.displayName ||
-      player1Data.displayName === currentUser?.email
-    ) {
-      console.log(player2Data.secretCode);
-    } else {
-      console.log(player1Data.secretCode);
-    }
 
     // // Save the game data to Firestore
     try {

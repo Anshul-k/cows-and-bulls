@@ -50,7 +50,7 @@ function ChatComponent({ gameId, currentPlayer }) {
     };
 
     fetchMessages();
-  }, [gameId, showChatIcon]);
+  }, [gameId, showChatIcon, messagesCount]);
 
   return (
     <div>
