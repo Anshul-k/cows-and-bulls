@@ -1,0 +1,254 @@
+:root{
+    .bg-red-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
+    }
+
+    .bg-yellow-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(252, 211, 77, var(--tw-bg-opacity));	
+    }
+
+    .bg-green-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(110, 231, 183, var(--tw-bg-opacity));
+    }
+
+    .bg-blue-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(147, 197, 253, var(--tw-bg-opacity));	
+    }
+
+    .bg-indigo-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(165, 180, 252, var(--tw-bg-opacity));
+    }
+
+    .bg-purple-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(196, 181, 253, var(--tw-bg-opacity));	
+    }
+
+    .bg-pink-300{
+        --tw-bg-opacity: 1;
+        background-color: rgba(249, 168, 212, var(--tw-bg-opacity));
+    }
+
+    .scrollable-container {
+        height: 26rem;
+        max-height: 26rem; /* Set a maximum height for the container */
+        overflow-y: auto;  /* Add vertical scrollbar if the content overflows */
+      }
+
+      @media screen and (max-width:1024px) {
+        .scrollable-container {
+          height: auto;
+          max-height: 11rem; /* Set a maximum height for the container */
+          overflow-y: auto;  /* Add vertical scrollbar if the content overflows */
+        }
+      }
+
+      @media screen and (max-width: 468px) {
+        .scrollable-container {
+          height: auto;
+          max-height: 12rem; /* Set a maximum height for the container */
+          overflow-y: auto;  /* Add vertical scrollbar if the content overflows */
+        }
+      }
+
+      .draft-container {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      
+      .isvisible {
+        opacity: 1;
+      }
+      
+      .ishidden {
+        opacity: 0;
+        pointer-events: none; /* Disable pointer events when hidden */
+      }
+
+      .winning-animation {
+        animation: fluctuateBackground 1s ease 3;
+      }
+
+      @keyframes fluctuateBackground {
+        0%, 100% {
+          background-color: white;
+        }
+        50% {
+          background-color: #AB8420;
+          color: #FFFDF9; 
+        }
+      } 
+
+      .alert{
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid #f5c6cb;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+}
+
+.bg-cows-and-bulls{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../public/Assets/Cows_and_Bulls_5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.bg-cows-and-bulls::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.primary-light-brown-text{
+  color: #AB8420;
+}
+
+.primary-light-brown-bg{
+  background-color: #AB8420;
+}
+
+.primary-brown-text{
+    color: #5C4E3D;
+}
+
+.primary-brown-bg{
+    background-color: #5C4E3D;
+}
+
+.primary-brown-border:focus{
+  border-color: #5C4E3D;
+}
+
+.primary-dark-text{
+  color: #0A210F;
+}
+
+.primary-dark-bg{
+  background-color: #0A210F;
+}
+
+.primary-white-text{
+  color: #FFFDF9;
+}
+
+.primary-white-bg{
+  background-color: #FFFDF9;
+}
+
+.primary-beige-text{
+  color: #F7ECD4;
+}
+
+.primary-beige-bg{
+  background-color: #F7ECD4;
+}
+
+.primary-green-text{
+  color: #224435;
+}
+
+.primary-green-bg{
+  background-color: #224435;
+}
+
+.button{
+  color: #FFFDF9;
+  background-color: #AB8420;
+  border: 2px solid #AB8420;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.button:hover{
+  color: #0A210F;
+  background-color: #F7ECD4;
+  border: 2px solid #0A210F;
+}
+
+.Navbutton{
+  color: #224435;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.Navbutton:hover{
+  color: #FFFDF9;
+  background-color: #AB8420;
+}
+
+.NavBackground {
+  background: rgba(255, 255, 255, 5.15);
+  backdrop-filter: blur(40px);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  background-color: #F7ECD4;
+}
+
+@keyframes moveTractor {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - 100px);
+  }
+}
+      
+.moving-tractor {
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  animation: moveTractor 15s linear infinite; 
+}
+
+.moving-cow {
+  position: relative;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  animation: moveTractor 15s linear infinite; 
+}
+
+.red-ox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .moving-tractor{
+    animation: moveTractor 8s linear infinite;
+  }
+
+  .moving-cow{
+    animation: moveTractor 8s linear infinite;
+  }
+
+  .red-ox{
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .moving-tractor{
+    animation: moveTractor 5s linear infinite;
+  }
+
+  .moving-cow {
+    animation: moveTractor 5s linear infinite;
+  }
+}
