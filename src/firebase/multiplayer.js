@@ -1,12 +1,5 @@
 import { db } from "./firebase";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  serverTimestamp,
-  arrayUnion,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 export const multiPlayerCompareAndSaveID = async (

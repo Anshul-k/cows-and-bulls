@@ -6,13 +6,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import LandingPage from "./Pages/LandingPage";
 import SoloGame from "./Pages/SoloGame";
-import { useParams } from "react-router-dom";
 import MultiGame from "./Pages/MultiGame";
 import PrivateRoute from "./Pages/PrivateRoute";
 import Rules from "./Pages/Rules";
 
 function App() {
-  const { digits, gameId } = useParams();
   return (
     <AuthProvider>
       <Router>

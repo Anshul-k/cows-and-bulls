@@ -9,7 +9,7 @@ import {
   compareAndSaveGameData,
   fetchGameData,
   updateGameStatus,
-} from "../firebase/storage";
+} from "../firebase/soloplayer";
 import { useAuth } from "../Contexts/AuthContexts";
 import QuitDialogBox from "../Components/QuitDialogBox";
 import WinDialogBox from "../Components/WinDialogBox";

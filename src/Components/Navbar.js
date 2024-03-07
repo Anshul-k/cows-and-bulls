@@ -8,7 +8,7 @@ import { useMedia } from "react-use";
 import "../style.scss";
 import DigitSelector from "../Components/DigitSelector";
 import MultiSelectDialogBox from "../Components/MultiSelectDialogBox";
-import { checkGameExists } from "../firebase/storage";
+import { checkGameExists } from "../firebase/soloplayer";
 
 const navigation = [
   { name: "Play Solo", link: "#", current: false },

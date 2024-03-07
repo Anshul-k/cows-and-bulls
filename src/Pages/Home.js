@@ -4,7 +4,7 @@ import { useAuth } from "../Contexts/AuthContexts";
 import { Navigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import DigitSelector from "../Components/DigitSelector";
-import { checkGameExists } from "../firebase/storage";
+import { checkGameExists } from "../firebase/soloplayer";
 import MultiSelectDialogBox from "../Components/MultiSelectDialogBox";
 import "../style.scss";
 
