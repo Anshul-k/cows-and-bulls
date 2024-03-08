@@ -154,69 +154,6 @@ function MultiGame() {
   }, [player1Data.quit, player2Data.quit, gameId, navigate]);
 
   useEffect(() => {
-    // Check if the latest guess has bulls equal to digits
-    if (guesses && numberOfInputFields && currentPlayer.isPlaying) {
-      const latestGuess = guesses[guesses.length - 1];
-      if (latestGuess && latestGuess.bulls === numberOfInputFields) {
-        // Set the winning state after a delay
-        setTimeout(() => {
-          setTurnComplete(true);
-          const nextPlayer =
-            currentPlayer.displayName === player1Data.displayName
-              ? "player2"
-              : "player1";
-
-          const currentPlayingPlayer =
-            currentPlayer.displayName === player1Data.displayName
-              ? "player1"
-              : "player2";
-
-          if (currentPlayer.isPlaying && !currentPlayer.isCompleted) {
-            assignPlay(gameId, nextPlayer);
-            updatePlayerCompleteStatus(
-              gameId,
-              currentPlayingPlayer,
-              guesses.length
-            );
-          }
-        }, 2000); // 1 second delay as an example, adjust as needed
-      }
-    }
-  }, [
-    guesses,
-    numberOfInputFields,
-    currentPlayer.displayName,
-    currentPlayer.isCompleted,
-    currentPlayer.isPlaying,
-    gameId,
-    player1Data.displayName,
-  ]);
-
-  useEffect(() => {
-    if (
-      player1Data.isReady &&
-      player2Data.isReady &&
-      player1Data.isCompleted &&
-      player2Data.isCompleted
-    ) {
-      setBothPlayersCompleted(true);
-    }
-  }, [
-    player1Data.isCompleted,
-    player2Data.isCompleted,
-    player1Data.isReady,
-    player2Data.isReady,
-  ]);
-
-  useEffect(() => {
-    // Scroll to the bottom when the component mounts or when the content changes
-    if (scrollableContainer.current) {
-      scrollableContainer.current.scrollTop =
-        scrollableContainer.current.scrollHeight;
-    }
-  }, [guesses]);
-
-  useEffect(() => {
     const fetchGuesses = async () => {
       try {
         // Check if both players' data is available
@@ -280,6 +217,76 @@ function MultiGame() {
     player1Data.isCompleted,
     player2Data.isCompleted,
   ]);
+
+  //For handlinging the player change and complete status.
+  useEffect(() => {
+    // Check if the latest guess has bulls equal to digits
+    if (
+      guesses &&
+      numberOfInputFields &&
+      currentPlayer.isPlaying &&
+      currentPlayer.guesses
+    ) {
+      const latestGuess = guesses[guesses.length - 1];
+      if (latestGuess && latestGuess.bulls === numberOfInputFields) {
+        // Set the winning state after a delay
+        setTimeout(() => {
+          setTurnComplete(true);
+          const nextPlayer =
+            currentPlayer.displayName === player1Data.displayName
+              ? "player2"
+              : "player1";
+
+          const currentPlayingPlayer =
+            currentPlayer.displayName === player1Data.displayName
+              ? "player1"
+              : "player2";
+
+          if (currentPlayer.isPlaying && !currentPlayer.isCompleted) {
+            assignPlay(gameId, nextPlayer);
+            updatePlayerCompleteStatus(
+              gameId,
+              currentPlayingPlayer,
+              guesses.length
+            );
+          }
+        }, 2000);
+      }
+    }
+  }, [
+    gameId,
+    numberOfInputFields,
+    guesses,
+    currentPlayer.displayName,
+    currentPlayer.isCompleted,
+    currentPlayer.isPlaying,
+    player1Data.displayName,
+    currentPlayer.guesses,
+  ]);
+
+  useEffect(() => {
+    if (
+      player1Data.isReady &&
+      player2Data.isReady &&
+      player1Data.isCompleted &&
+      player2Data.isCompleted
+    ) {
+      setBothPlayersCompleted(true);
+    }
+  }, [
+    player1Data.isReady,
+    player2Data.isReady,
+    player1Data.isCompleted,
+    player2Data.isCompleted,
+  ]);
+
+  useEffect(() => {
+    // Scroll to the bottom when the component mounts or when the content changes
+    if (scrollableContainer.current) {
+      scrollableContainer.current.scrollTop =
+        scrollableContainer.current.scrollHeight;
+    }
+  }, [guesses]);
 
   useEffect(() => {
     const fetchAvatars = async () => {

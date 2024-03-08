@@ -29,6 +29,7 @@ export default function WinDialogBox({
         setWinner(player2);
       } else {
         setPlayer(`It's a DRAW......You both played well`);
+        setWinner("");
       }
     }
   }, [player1, player2]);
@@ -120,10 +121,20 @@ export default function WinDialogBox({
                       </div>
                     ) : (
                       // Render content when isMulti is true and isQuit is false
-                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                         <div className="flex w-full justify-center items-center">
-                          {winner.displayName === currentPlayer.displayName ||
-                          winner === "" ? (
+                          {winner === "" ? (
+                            <img
+                              src="/Assets/Mini-Cow-Dancing.gif"
+                              alt="Quit"
+                              style={{
+                                width: "150px",
+                                height: "150px",
+                                paddingBottom: "1rem",
+                              }}
+                            />
+                          ) : winner.displayName ===
+                            currentPlayer.displayName ? (
                             <img
                               src="/Assets/Mini-Cow-Dancing.gif"
                               alt="Quit"

@@ -20,6 +20,12 @@ function ChatComponent({ gameId, currentPlayer }) {
   const handleIconButton = () => {
     setShowChatIcon(!showChatIcon);
     setUnreadMessagesCount(0);
+    setMessagesCount(messages.length);
+  };
+
+  const handleCrossButton = () => {
+    setShowChatIcon(!showChatIcon);
+    setMessagesCount(messages.length);
   };
 
   useEffect(() => {
@@ -37,7 +43,6 @@ function ChatComponent({ gameId, currentPlayer }) {
             setUnreadMessagesCount(0);
           }
           setMessages(messagesData);
-          setMessagesCount(messagesData.length);
         } else {
           console.error(`Player document does not exist in game ${gameId}`);
         }
@@ -89,7 +94,7 @@ function ChatComponent({ gameId, currentPlayer }) {
               </div>
               <button
                 className="text-gray-500 hover:text-gray-700"
-                onClick={() => setShowChatIcon(!showChatIcon)}
+                onClick={handleCrossButton}
               >
                 <svg
                   className="w-6 h-6 primary-brown-text"
