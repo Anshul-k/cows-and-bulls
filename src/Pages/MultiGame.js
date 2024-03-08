@@ -757,6 +757,7 @@ function MultiGame() {
                   className={`mx-2 w-7 h-9 sm:w-10 sm:h-10 text-center rounded border-2 border-yellow-800 focus-visible:border-yellow-800 ${
                     secretNumberErrors[index] ? "border-red-500" : ""
                   }`}
+                  inputMode="numeric"
                 />
               ))}
             </div>
@@ -832,6 +833,7 @@ function MultiGame() {
                             }
                             readOnly={index === 0 && hintUsed}
                             className="mx-1 lg:mx-2 w-5 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 text-center border-2 border-yellow-800 rounded"
+                            inputMode="numeric"
                           />
                         ))}
                       </div>

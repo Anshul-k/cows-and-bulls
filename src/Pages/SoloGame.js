@@ -247,6 +247,7 @@ function SoloGame() {
                         }
                         readOnly={index === 0 && hintUsed}
                         className="mx-1 lg:mx-2 w-5 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 text-center border-2 border-yellow-800 rounded"
+                        inputMode="numeric"
                       />
                     ))}
                   </div>
