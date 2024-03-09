@@ -297,7 +297,7 @@ function SoloGame() {
             {guesses.length === 0 ? (
               <div className="mb-2 lg:mb-0 border-dashed border-4 rounded-sm border-yellow-800 divide-y-2 w-full h-full">
                 <div className="flex justify-center items-center px-6 py-4- w-full h-full font-bold primary-dark-text">
-                  A {digits} digit Secret Code has been genrated. Make your
+                  A {digits} digit Secret Code has been generated. Make your
                   guess to figure out the code....
                 </div>
               </div>
